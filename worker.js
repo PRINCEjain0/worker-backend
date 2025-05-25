@@ -6,6 +6,7 @@ import prisma from "./prisma.js";
 const emailWorker = new Worker(
   "email",
   async (job) => {
+    console.log(`Processing email job for ID ${job.id}`);
     const { email, recipient, subject, body, emailId } = job.data;
 
     const resend = new Resend(process.env.RESEND_API_KEY);
